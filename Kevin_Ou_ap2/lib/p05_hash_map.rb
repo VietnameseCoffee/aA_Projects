@@ -1,5 +1,6 @@
 require_relative 'p02_hashing'
 require_relative 'p04_linked_list'
+require 'byebug'
 
 class HashMap
   include Enumerable
@@ -43,12 +44,12 @@ class HashMap
   end
 
   # uncomment when you have Enumerable included
-  # def to_s
-  #   pairs = inject([]) do |strs, (k, v)|
-  #     strs << "#{k.to_s} => #{v.to_s}"
-  #   end
-  #   "{\n" + pairs.join(",\n") + "\n}"
-  # end
+  def to_s
+    pairs = inject([]) do |strs, (k, v)|
+      strs << "#{k.to_s} => #{v.to_s}"
+    end
+    "{\n" + pairs.join(",\n") + "\n}"
+  end
 
   alias_method :[], :get
   alias_method :[]=, :set
@@ -62,7 +63,9 @@ class HashMap
   def resize!
     new_hash = Array.new(num_buckets * 2) { LinkedList.new }
 
-    @store.each {|k, v| new_hash[(k.hash) % (num_buckets * 2)].append(k, v)}
+    self.each do |k, v|
+      new_hash[(k.hash) % (num_buckets * 2)].append(k, v)
+    end
     @store = new_hash
   end
 
