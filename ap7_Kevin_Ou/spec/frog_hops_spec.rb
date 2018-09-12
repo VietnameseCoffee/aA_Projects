@@ -17,9 +17,9 @@ describe 'Frog Hops Bottom Up' do
     expect(dp.frog_hops_bottom_up(10)).to include([1, 3, 3, 3])
   end
 
-  # it 'runs in non-exponential time' do
-  #   expect { dp.frog_hops_bottom_up(20) }.to perform_under(1000).ms
-  # end
+  it 'runs in non-exponential time' do
+    expect { dp.frog_hops_bottom_up(20) }.to perform_under(1000).ms
+    end
 end
 
 describe 'Frog Hops Top Down' do
@@ -47,7 +47,7 @@ describe 'Frog Hops Top Down' do
     expect(dp.frog_hops_top_down(10)).to include([1, 3, 3, 3])
   end
 
-  # it 'runs in non-exponential time' do
-  #   expect { dp.frog_hops_top_down(20) }.to perform_under(1000).ms
-  # end
+  it 'runs in non-exponential time' do
+    expect { dp.frog_hops_top_down(20) }.to perform_under(1000).ms
+  end
 end
