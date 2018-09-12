@@ -30,13 +30,13 @@ class QuickSort
     return if length <= 1
     prc ||= Proc.new { |i, j| i <=> j }
 
-    random = Random.rand(start...(start + length))
-    array[start], array[random] = array[random], array[start]
-    debugger
+    # random = Random.rand(start...(start + length))
+    # array[start], array[random] = array[random], array[start]
+    # debugger
 
     pivot_index = self.partition(array, start, length, &prc)
     left = self.sort2!(array, start, (pivot_index - start), &prc)
-    right = self.sort2!(array, (pivot_index + 1), (length - (start - pivot_index) - 1), &prc)
+    right = self.sort2!(array, (pivot_index + 1), (length - (pivot_index - start) - 1), &prc)
   end
   
   def self.partition(array, start, length, &prc)

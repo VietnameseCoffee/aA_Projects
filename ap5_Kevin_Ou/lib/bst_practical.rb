@@ -2,21 +2,23 @@ require_relative './binary_search_tree'
 
 def kth_largest(tree_node, k)
   # use in order traversal then key into kth element of arr
-  counter = { count: 0 }
+  hash = { ct: 0 }
 
-  max_traversal(tree_node, k, counter)
-  counter[:k]
+  max_traversal(tree_node, k, hash)
+  
+  hash[:kth]
 end
 
-def max_traversal(tree_node, k, counter)
-  return if counter[:k]
-  
-  max_traversal(tree_node.right, k, counter) if tree_node.right
-  counter[:count] += 1
-  if counter[:count] == k
-    counter[:k] = tree_node
-    counter[:count] += 1
+def max_traversal(tree_node, k, hash)
+  return if hash[:kth]
+
+  max_traversal(tree_node.right, k, hash) if tree_node.right
+  hash[:ct] += 1
+  if hash[:ct] == k
+    hash[:kth] = tree_node
+    hash[:ct] += 1
+    return
   end
-  max_traversal(tree_node.left, k, counter) if tree_node.left
+  max_traversal(tree_node.left, k, hash) if tree_node.left
 
 end
